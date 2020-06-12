@@ -1,0 +1,6 @@
+- datos obligatorios y datos por defecto cuando no esten. Para estudiantes.
+
+- Cantidad de horarios minimos para docentes.
+
+- duración de las clases? tiempo de descanso entre clases?
+
