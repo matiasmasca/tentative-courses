@@ -19,6 +19,8 @@ horario.
 ----- hora de inicio
 ----- hora de fin
 
+inscriptions ??
+
 
 Aceptacion
 * Los cursos tienen que respetar el horario que el docente tiene disponible.
