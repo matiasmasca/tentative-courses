@@ -1,8 +1,8 @@
 require 'minitest/autorun'
-require '../code/course_manager'
-require '../code/student'
-require '../code/teacher'
-require '../code/course'
+require '../src/course_manager'
+require '../src/student'
+require '../src/teacher'
+require '../src/course'
 
 
 describe 'CourseManager' do
@@ -80,7 +80,7 @@ describe 'CourseManager' do
   # DONE * Los cursos tienen que respetar el horario que el docente tiene disponible.
   # DONE * Los cursos tienen que respetar el horario disponible de los estudiantes.
   # DONE * Los cursos individuales sólo pueden contener 1 inscripto.
-  # * Los cursos grupales pueden contener hasta 6 inscriptos.
+  # DONE * Los cursos grupales pueden contener hasta 6 inscriptos.
   # * Todos los inscriptos en el curso tienen que tener el mismo nivel.
   # * Todos los inscriptos tienen que la misma modalidad. Ej. Si un estudiante eligió modalidad individual no se los puede inscribir en curso grupal.
 

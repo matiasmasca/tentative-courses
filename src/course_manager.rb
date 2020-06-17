@@ -18,8 +18,12 @@ class CourseManager
       # It should do the match with the first day
       return object_course = Course.new(teacher, students, teacher.schedule[0][0], teacher.schedule[0][1], :single)
     elsif student_matches.empty? == false
-      # puts student_matches[0]
-      return object_course = Course.new(teacher, students, teacher.schedule[0][0], teacher.schedule[0][1], :group)
+      puts students.count
+      if students.count <= 6 && students.count > 0
+        return object_course = Course.new(teacher, students, teacher.schedule[0][0], teacher.schedule[0][1], :group)
+      else
+        raise "Error: it was not possible to create a course for group mode, you must provide between 1 and 6 \"student\"."
+      end
     else
       raise "Error: it was not possible to create a course, there were no matches."
     end
