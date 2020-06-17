@@ -11,16 +11,17 @@ class CourseManager
    # puts student_matches.inspect
 
     if mode == :single && student_matches.empty? == false
+      # Only one student and only one teacher.
+      if students.count != 1
+        raise "Error: it was not possible to create a course for single mode, you must provide only one \"student\"."
+      end
       # It should do the match with the first day
       return object_course = Course.new(teacher, students, teacher.schedule[0][0], teacher.schedule[0][1], :single)
     elsif student_matches.empty? == false
       # puts student_matches[0]
-      object_course = Course.new(teacher, students, teacher.schedule[0], teacher.schedule[1], :group)
-
-      student_matches
+      return object_course = Course.new(teacher, students, teacher.schedule[0][0], teacher.schedule[0][1], :group)
     else
-      puts "Error: it was not possible to create a course, there were no matches."
-      nil
+      raise "Error: it was not possible to create a course, there were no matches."
     end
   end
 

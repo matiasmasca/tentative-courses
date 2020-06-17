@@ -4,7 +4,7 @@
 
 - duración de las clases? tiempo de descanso entre clases?
 
-- un estudiante puede estar en 2 cursos? por ejemplo uno grupal y uno individual? un de tipo negocio y otro de conversación.
+- un estudiante puede estar en 2 cursos? por ejemplo uno grupal y uno individual? un de tipo negocio y otro de conversación. Sobre todo en los casos donde el estudiante manifesto tener varios horarios disponibles.
 
 - Qué horario debería tener el curso individual? el primero que haga la igualdad con el alumno? o con el profesor?
 
