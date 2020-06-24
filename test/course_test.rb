@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require '../code/course'
+require '../src/course'
 
 
 describe 'Course' do

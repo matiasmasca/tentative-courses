@@ -1,25 +1,37 @@
-estudiantes
-- modalidad
-- nivel
-- horarios disponibles
+desde la consola ejecutar los test con:
+ruby -Ilib:test test/course_manager_test.rb
 
 
-docentes
-- horarios disponibles
+lista de estudiantes
+lista de docentes
 
-cursos
-- nivel
-- horario
-- docentes
-- inscriptos
 
-horario.
+estudiantes == students
+name- nombre
+mode- modalidad
+level- nivel
+schedule- horarios disponibles
+
+docentes == teacher
+name- nombre
+schedule- horarios disponibles
+
+cursos == course
+level- nivel
+schedule- horario
+teacher- docentes
+students- inscriptos
+
+horario == schedule.
 -- dia.
 -- hora.
 ----- hora de inicio
 ----- hora de fin
 
-inscriptions ??
+inscripciones == inscriptions ??
+
+objetivo:
+- obtener una lista de cursos posibles
 
 
 Aceptacion
@@ -32,3 +44,11 @@ Aceptacion
 
 Estas condiciones pueden ir sufriendo modificaciones con el tiempo.
 
+
+
+
+# para debug.
+# require 'pry'
+#
+
+# trade-offs

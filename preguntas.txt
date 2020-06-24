@@ -1,10 +1,32 @@
-- datos obligatorios y datos por defecto cuando no esten. Para estudiantes.
+# Cargar preguntas como issue en el repo.
+1. Qué horario debería tener el curso individual? el primero que haga la igualdad con el alumno? o con el profesor?
 
-- Cantidad de horarios minimos para docentes.
+2. Qué horario debería tener el curso grupal? el primero que haga la igualdad con todos los alumnos? o el primero con la disponibilidad del profesor profesor?
 
-- duración de las clases? tiempo de descanso entre clases?
+3. datos obligatorios y datos por defecto cuando no estén. Por ejemplo para estudiantes.
 
-- un estudiante puede estar en 2 cursos? por ejemplo uno grupal y uno individual? un de tipo negocio y otro de conversación. Sobre todo en los casos donde el estudiante manifesto tener varios horarios disponibles.
+4. Cantidad de horarios mínimos para docentes.
 
-- Qué horario debería tener el curso individual? el primero que haga la igualdad con el alumno? o con el profesor?
+5. duración de las clases? tiempo de descanso entre clases?
 
+6. un estudiante puede tener 2 inscripciones y por ende estar en 2 cursos? por ejemplo uno grupal y uno individual? un de tipo negocio y otro de conversación. Sobre todo en los casos donde el estudiante manifestó tener varios horarios disponibles.
+
+
+RESPUESTAS:
+1. Se deberían mostrar todas las posibilidades para asignar los grupos con todos los docentes
+
+2. Se deberían mostrar todas las posibilidades de agrupación con los docentes
+
+3. Asumí que van a estar todos los datos completos a ninguno le va a faltar datos necesarios
+
+4. No hay horarios mínimos
+
+5. 1 hora de duración, no se contempla descanso
+
+6. Sólo una inscripción puede tener el estudiante. Manifestar multiples horarios disponibles es para ampliar la posibilidad de asignación con docente.
+
+==========================================
+
+ # Es necesario que al momento de asignar los cursos se marque como ocupado el horario de un docente? o ¿se tiene que generar la lista completa de posibilidades?
+ # hipotesis ¿Como sabes si un docente tiene el horario disponible? availability="available"|"busy"
+ # ir cambiando la disponibilidad de los profesores en ese horario.

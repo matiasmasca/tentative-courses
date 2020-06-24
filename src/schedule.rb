@@ -1,7 +1,6 @@
 require 'date'
-#require 'pry'
 
-class Person
+class Schedule
 
   def add_day(schedule = self.schedule, day, hour)
     day_number = day_to_number(day)
@@ -26,10 +25,8 @@ class Person
       begin
         Date.strptime(day.downcase, '%A').wday
       rescue
-        puts 'invalid day, english or spanish only.'
-        nil
+        raise "Error: invalid text for day, english or spanish only.."
       end
     end
   end
 end
-

@@ -1,13 +1,8 @@
-require_relative 'person'
+require_relative 'schedule'
 
-class Teacher < Person
-  attr_reader :name, :schedule
-
-  # def schedule=(schedule)
-  #   return [] if schedule.empty?
-
-  #   schedule.each {|schedule| self.add_day(schedule[0],schedule[1])}
-  # end
+class Teacher < Schedule
+  attr_reader :name
+  attr_accessor :schedule
 
   def initialize(name_arg, schedule_arg = [])
     @name = name_arg

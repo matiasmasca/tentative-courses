@@ -1,6 +1,6 @@
-require_relative 'person'
+require_relative 'schedule'
 
-class Student < Person
+class Student < Schedule
   attr_reader :full_name, :mode, :level, :schedule
 
   def initialize(full_name = nil, mode = grupal, level = "Beginner", schedule_arg = [])
@@ -9,10 +9,6 @@ class Student < Person
     @level = level
     @schedule = parse_schedule(schedule_arg)
   end
-
-  # def schedule
-  #   @schedule
-  # end
 
   private
 
