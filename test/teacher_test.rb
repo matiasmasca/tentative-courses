@@ -13,27 +13,31 @@ describe 'Teacher' do
   end
 
   it 'can set a schedule' do
-    schedule = [["monday",17],["wednesday",9],["thursday",20]]
+    schedule = [["Monday",17],["Wednesday",9],["Thursday",20]]
     @teacher.schedule = schedule
     expect(@teacher.schedule[2][1]).must_equal 20
   end
 
   it 'can add his availability for a day' do
-    @teacher.add_day("monday", 19)
+    @teacher.add_day("Monday", 19)
     expect(@teacher.schedule[1][1]).must_equal 19
   end
 
   it 'can add his availability for a day in two differents hours' do
-    @teacher.add_day("monday", 19)
-    @teacher.add_day("wednesday", 9)
+    @teacher.add_day("Monday", 19)
+    @teacher.add_day("Wednesday", 9)
     expect(@teacher.schedule[2][1]).must_equal 9
     expect(@teacher.schedule).must_equal [[1, 17], [1, 19], [3, 9]]
   end
 
-  it 'can add his availability for a day in two differents hours' do
+  it 'can add his availability for a day in Spanish in two differents hours' do
     @teacher.add_day("Lunes", 19)
     @teacher.add_day("Martes", 9)
     expect(@teacher.schedule[2][1]).must_equal 9
     expect(@teacher.schedule).must_equal [[1, 17], [1, 19], [2, 9]]
+  end
+
+  it 'can\' add his availability for the weekend' do
+    skip
   end
 end

@@ -37,9 +37,9 @@ objetivo:
 Aceptacion
 * Los cursos tienen que respetar el horario que el docente tiene disponible.
 * Los cursos tienen que respetar el horario disponible de los estudiantes.
+* Los cursos individuales sólo pueden contener 1 inscripto.
 * Todos los inscriptos en el curso tienen que tener el mismo nivel.
 * Los cursos grupales pueden contener hasta 6 inscriptos.
-* Los cursos individuales sólo pueden contener 1 inscripto.
 * Todos los inscriptos tienen que la misma modalidad. Ej. Si un estudiante eligió modalidad individual no se los puede inscribir en curso grupal.
 
 Estas condiciones pueden ir sufriendo modificaciones con el tiempo.
@@ -52,3 +52,9 @@ Estas condiciones pueden ir sufriendo modificaciones con el tiempo.
 #
 
 # trade-offs
+
+
+# Todo:
+- revisar los require en las clases si son realmente necesarios.
+- revisar que todo metodo tenga un test
+- documentar bien los métodos y el significado de sus parametros.

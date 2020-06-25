@@ -10,6 +10,12 @@ class Student < Schedule
     @schedule = parse_schedule(schedule_arg)
   end
 
+  def self.find_student_by_name(students, student_name)
+    # students: an array list of objects Student.
+    # student_name: a string thar represetn the value of full_name attribute
+    students.select { |student| student.full_name == student_name } # find the student object
+  end
+
   private
 
   def parse_schedule(schedule_arg)
