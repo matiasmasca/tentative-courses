@@ -58,3 +58,4 @@ Estas condiciones pueden ir sufriendo modificaciones con el tiempo.
 - revisar los require en las clases si son realmente necesarios.
 - revisar que todo metodo tenga un test
 - documentar bien los métodos y el significado de sus parametros.
+- revisar que las pruebas revisen una sola cosa

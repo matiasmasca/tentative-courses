@@ -6,7 +6,7 @@ require '../src/course'
 
 describe 'CourseManager' do
   before do
-    @student = Student.new("Milhouse Van Houten", "single", "Beginner", [["Monday", 19]])
+    @student = Student.new("Milhouse Van Houten", :single, "Beginner", [["Monday", 19]])
     @teacher = Teacher.new("Miss Crabapel", [["Monday", 19]])
   end
 
@@ -14,31 +14,31 @@ describe 'CourseManager' do
 
     it 'create a course with 0 student exact match with one day' do
       skip
-      # student = Student.new("Milhouse Van Houten", "single", "Beginner", [["Monday", 19]])
+      # student = Student.new("Milhouse Van Houten", :single, "Beginner", [["Monday", 19]])
       teacher = Teacher.new("Miss Crabapel", [["Monday", 21]])
 
       assert_raises RuntimeError do
-        course = CourseManager.create_course(teacher, [@student], :single)
+        course = CourseManager.new_course(teacher, [@student], :single)
       end
     end
 
     it 'create a course with 0 student exact match differents days' do
       skip
-      # student = Student.new("Milhouse Van Houten", "single", "Beginner", [["Monday", 19]])
+      # student = Student.new("Milhouse Van Houten", :single, "Beginner", [["Monday", 19]])
       teacher = Teacher.new("Miss Crabapel", [["Friday", 21]])
       assert_raises RuntimeError do
-        course = CourseManager.create_course(teacher, [@student], :single)
+        course = CourseManager.new_course(teacher, [@student], :single)
       end
     end
 
     it 'create a single course with 2 student not is possible' do
       skip
       students = []
-      students << Student.new("Milhouse Van Houten", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Bart J. Simpson", "group", "Beginner", [["Monday", 19]])
+      students << Student.new("Milhouse Van Houten", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Bart J. Simpson", :group, "Beginner", [["Monday", 19]])
       #teacher = Teacher.new("Miss Crabapel", [["Monday", 19]])
       assert_raises RuntimeError do
-        course = CourseManager.create_course(@teacher, students, :single)
+        course = CourseManager.new_course(@teacher, students, :single)
       end
   end
 
@@ -46,10 +46,10 @@ describe 'CourseManager' do
     it 'create a course with 2 student exact match one day' do
       skip
       students = []
-      students << Student.new("Milhouse Van Houten", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Bart J. Simpson", "group", "Beginner", [["Monday", 19]])
+      students << Student.new("Milhouse Van Houten", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Bart J. Simpson", :group, "Beginner", [["Monday", 19]])
       #teacher = Teacher.new("Miss Crabapel", [["Monday", 19]])
-      course = CourseManager.create_course(@teacher, students, :group)
+      course = CourseManager.new_course(@teacher, students, :group)
 
       expect(course.hour).must_equal 19
       expect(course.day).must_equal 1
@@ -64,46 +64,46 @@ describe 'CourseManager' do
     it 'create a group course with more than 6 student not is possible' do
       skip
       students = []
-      students << Student.new("Milhouse Van Houten", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Bart J. Simpson", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Nelson Muntz", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Martin Prince.", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Wendell Borton", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Sophie Jensen", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Laurence Simmons", "group", "Beginner", [["Monday", 19]])
+      students << Student.new("Milhouse Van Houten", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Bart J. Simpson", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Nelson Muntz", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Martin Prince.", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Wendell Borton", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Sophie Jensen", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Laurence Simmons", :group, "Beginner", [["Monday", 19]])
       #teacher = Teacher.new("Miss Crabapel", [["Monday", 19]])
       assert_raises RuntimeError do
-        course = CourseManager.create_course(@teacher, students, :group)
+        course = CourseManager.new_course(@teacher, students, :group)
       end
     end
 
     it 'create a group course with differents level for students not is possible' do
       skip
       students = []
-      students << Student.new("Milhouse Van Houten", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Bart J. Simpson", "group", "Intermediate", [["Monday", 19]])
-      students << Student.new("Nelson Muntz", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Martin Prince.", "group", "Intermediate", [["Monday", 19]])
-      students << Student.new("Wendell Borton", "group", "Beginner", [["Monday", 19]])
-      students << Student.new("Sophie Jensen", "group", "Intermediate", [["Monday", 19]])
+      students << Student.new("Milhouse Van Houten", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Bart J. Simpson", :group, "Intermediate", [["Monday", 19]])
+      students << Student.new("Nelson Muntz", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Martin Prince.", :group, "Intermediate", [["Monday", 19]])
+      students << Student.new("Wendell Borton", :group, "Beginner", [["Monday", 19]])
+      students << Student.new("Sophie Jensen", :group, "Intermediate", [["Monday", 19]])
       #teacher = Teacher.new("Miss Crabapel", [["Monday", 19]])
       assert_raises RuntimeError do
-        course = CourseManager.create_course(@teacher, students, :group)
+        course = CourseManager.new_course(@teacher, students, :group)
       end
     end
 
     it 'create a group course with differents mode for students not is possible' do
       skip
       students = []
-      students << Student.new("Milhouse Van Houten", "single", "Intermediate", [["Monday", 19]])
-      students << Student.new("Bart J. Simpson", "group", "Intermediate", [["Monday", 19]])
-      students << Student.new("Nelson Muntz", "single", "Intermediate", [["Monday", 19]])
-      students << Student.new("Martin Prince.", "group", "Intermediate", [["Monday", 19]])
-      students << Student.new("Wendell Borton", "single", "Intermediate", [["Monday", 19]])
-      students << Student.new("Sophie Jensen", "group", "Intermediate", [["Monday", 19]])
+      students << Student.new("Milhouse Van Houten", :single, "Intermediate", [["Monday", 19]])
+      students << Student.new("Bart J. Simpson", :group, "Intermediate", [["Monday", 19]])
+      students << Student.new("Nelson Muntz", :single, "Intermediate", [["Monday", 19]])
+      students << Student.new("Martin Prince.", :group, "Intermediate", [["Monday", 19]])
+      students << Student.new("Wendell Borton", :single, "Intermediate", [["Monday", 19]])
+      students << Student.new("Sophie Jensen", :group, "Intermediate", [["Monday", 19]])
       #teacher = Teacher.new("Miss Crabapel", [["Monday", 19]])
       assert_raises RuntimeError do
-        course = CourseManager.create_course(@teacher, students, :group)
+        course = CourseManager.new_course(@teacher, students, :group)
       end
     end
   end
