@@ -4,10 +4,12 @@ class CourseManager
   include Schedulable
 
   def self.create_tentative_course(teachers_list=[], students_list=[])
-    # < Receive a list of teachers and a list of students in order to create courses >
-    # < return: a hash with a list of tentatives courses (instances of Course) and a list of students name without course >
-    # teachers_list: an array of instances of Teacher
-    # students_list: an array of instances of Students
+    # Receive a list of teachers and a list of students in order to create courses
+    # return: a hash with a list of tentatives courses (instances of Course) and a list of students name without course
+    #
+    # teachers_list - an array of instances of Teacher
+    # students_list - an array of instances of Students
+    #
 
     # Sort the students by mode: group or single.
     students = sorted_by_mode(students_list)
@@ -56,11 +58,11 @@ class CourseManager
   end
 
   def self.match_schedule_teacher_students(teachers_list, students_list)
-    # < Generate a list of alternatives with the matched schedules between a teacher a all the students >
-    # < return: a hash with a list of tentatives courses per teacher and a list of students name without course; but don't create the courses >
-    # teachers_list: an array of instances of Teacher
-    # students_list: an hash of instances of Students ordered by course mode single or group and by their language level
-
+    # Generate a list of alternatives with the matched schedules between a teacher a all the students >
+    # return: a hash with a list of tentatives courses per teacher and a list of students name without course; but don't create the courses >
+    # teachers_list - an array of instances of Teacher
+    # students_list - an hash of instances of Students ordered by course mode single or group and by their language level
+    #
     teachers_choices = {}
     students_out = []
     students_in = []
@@ -88,21 +90,22 @@ class CourseManager
   end
 
   def self.new_course(teacher, students,day, hour, mode, level)
-    # < Create a new object Course >
-    # teacher: an instance of the Teacher class
-    # students: an array of instances of the Student class
-    # day: an integer that represent the week day
-    # hour: an integer that represent the start hour of the course
-    # mode: a symbol that represent the mode of the course, :single or :group
-    # level: a string that represent the level of the course
+    # Create a new object Course
+    # teacher - an instance of the Teacher class
+    # students - an array of instances of the Student class
+    # day - an integer that represent the week day
+    # hour - an integer that represent the start hour of the course
+    # mode - a symbol that represent the mode of the course, :single or :group
+    # level - a string that represent the level of the course
 
     return object_course = Course.new(teacher, mode, level, students, day, hour)
   end
 
   def self.draw_match(teacher, students_by_mode_and_level)
-    # < create a list of candidates for a teacher availability with mode and level. >
-    # teacher: an instance of Teacher
-    # students_by_mode_and_level: an hash of instances of Students ordered by course mode single or group and by their language level
+    # Create a list of candidates for a teacher availability with mode and level.
+    #
+    # teacher - an instance of Teacher
+    # students_by_mode_and_level - an hash of instances of Students ordered by course mode single or group and by their language level
 
     choices = {} # hash with days, hours and a list of students availables for each day
     students_out = []
@@ -133,9 +136,10 @@ class CourseManager
   end
 
   def self.students_in_groups_of(students_array, length)
-    # < create group of students, in arrays, by the length param >
-    # students_array: an array of objects Student
-    # length: amount of groups
+    # Create group of students, in arrays, by the length param.
+    #
+    # students_array - an array of objects Student
+    # length - amount of groups
 
     total_groups = (students_array.size.to_f/length).ceil.to_i
 
@@ -151,9 +155,10 @@ class CourseManager
   end
 
   def self.sorted_by_mode(students_list)
-    # < Sort the list of students according to their mode single or group in a hash >
-    # students_list: an array of instances of Student class
-
+    # Sort the list of students according to their mode single or group in a hash.
+    #
+    # students_list - an array of instances of Student class
+    #
     students = { group: [], single:[] }
     students_list.each do |student|
       if student.mode == :single
@@ -166,8 +171,9 @@ class CourseManager
   end
 
   def self.sorted_by_level(students_list_hash_by_mode)
-    # < Sort the list of students according to their mode single or group in a hash >
-    # students_list_hash_by_mode: a hash of instances of Student class ordered by mode single or group.
+    # Sort the list of students according to their mode single or group in a hash.
+    #
+    # students_list_hash_by_mode - a hash of instances of Student class ordered by mode single or group.
 
     students_by_level = { "Beginner"=>[], "Pre-Intermediate"=>[], "Intermediate"=>[], "Upper-Intermediate"=>[], "Advanced"=>[] }
     students_list_hash_by_mode.each do |student|
@@ -190,9 +196,10 @@ class CourseManager
   end
 
   def self.check_mode(objects_array, attribute)
-    # < Check if all the objects have the same value for the atrribute >
-    # objects: an array of objects
-    # attribute: name of the attribute to use as criteria for check the equality of the whole array items
+    # Check if all the objects have the same value for the atrribute.
+    #
+    # objects - an array of objects
+    # attribute - name of the attribute to use as criteria for check the equality of the whole array items
 
     criteria = objects_array.first.instance_variable_get('@'+attribute)
     objects_array.each do |object|

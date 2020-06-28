@@ -3,15 +3,12 @@ require '../src/course'
 require '../src/student'
 require '../src/teacher'
 
-# schedule_class
-# check_students_by_mode
-
 describe 'Course' do
   describe 'Sigle course' do
     describe 'a course has to have' do
       before do
-        @teacher = Teacher.new("Drippy Dan", [["Friday", 19]])
-        @student = Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]])
+        @teacher = Teacher.new("Drippy Dan", [["Monday", 9]])
+        @student = Student.new("Adrian Droide", :single, "Beginner", [["Monday", 9]])
         @enrolled_students = [ @student ]
       end
 
@@ -24,10 +21,12 @@ describe 'Course' do
         course = Course.new(@teacher, :single, "Beginner", @enrolled_students, 1, 9)
         expect(course.level).must_equal "Beginner"
       end
+
       it 'a schedule class, with day and hour' do
         course = Course.new(@teacher, :single, "Beginner", @enrolled_students, 1, 9)
         expect(course.schedule_class).must_equal ({day: 1, hour: 9 })
       end
+
       it 'a list of enrolled' do
         course = Course.new(@teacher, :single, "Beginner", @enrolled_students, 1, 9)
         expect(course.students_enrolled).must_equal @enrolled_students
@@ -71,7 +70,7 @@ describe 'Course' do
 
           it 'Group for multi-students course' do
             enrolled_students = []
-            enrolled_students << Student.new("Milhouse Van Houten", :group, "Beginner", [["Monday", 19]])
+            enrolled_students << Student.new("Milhouse Van Houten", :group, "Beginner", [["Monday", 9]])
             course = Course.new(@teacher, :group, "Beginner", enrolled_students, 1, 9)
             expect(course.mode).must_equal :group
           end
@@ -99,12 +98,9 @@ describe 'Course' do
     end
 
     it 'create a course with 1 student exact match one day with the teacher' do
-      course = Course.new(@teacher, :single, "Beginner", [ @student ], 1, 9)
-      expect(course.hour).must_equal 9
-      expect(course.day).must_equal 1
-      expect(course.mode).must_equal :single
+      course = Course.new(@teacher, :single, "Beginner", [ @student ], 1, 19)
       expect(course.teacher.full_name).must_equal "Miss Crabapel"
-      expect(course.students_enrolled.count).must_equal 1
+      expect(course.students_enrolled.first.full_name).must_equal "Milhouse Van Houten"
     end
 
     it 'can\'t create a single course with 2 student' do
@@ -112,7 +108,7 @@ describe 'Course' do
       students << @student
       students << Student.new("Bart J. Simpson", :single, "Beginner", [["Monday", 19]])
       err = assert_raises RuntimeError do
-        course = Course.new(@teacher, :single, "Beginner", students, 1, 9)
+        course = Course.new(@teacher, :single, "Beginner", students, 1, 19)
       end
       assert_match /Error: it was not possible to create a course for single mode, you must provide only one \"student\"./, err.message
     end
@@ -121,7 +117,7 @@ describe 'Course' do
   describe 'Schedule course' do
     before do
       @student = Student.new("Milhouse Van Houten", :single, "Beginner")
-      @teacher = Teacher.new("Miss Crabapel")
+      @teacher = Teacher.new("Miss Crabapel", [["Monday", 19]])
     end
 
     describe 'can\'t add his schedule for the weekend' do
@@ -154,6 +150,45 @@ describe 'Course' do
         end
         assert_match /Error: hour must be number between 9 and 19/, err.message
       end
+
+      describe 'The courses have to respect the schedule that the teacher has available.' do
+        before do
+          @teacher = Teacher.new("Miss Crabapel", [["Monday", 19],["Friday", 9]])
+          @student = Student.new("Milhouse Van Houten", :single, "Beginner", [["Monday",19]])
+        end
+
+        it 'has course schedule match with one schedule of the teacher of the course' do
+          course = Course.new(@teacher, :single, "Beginner", [@student], 1, 19)
+          expect(course.schedule_class).must_equal ({day: 1, hour: 19 })
+        end
+
+        it 'Can\' create beacuse the course schedule don\'t match with one schedule of the teacher of the course' do
+          err = assert_raises RuntimeError do
+            course = Course.new(@teacher, :single, "Beginner", [@student], 1, 10)
+          end
+          assert_match /Error: The courses have to respect the schedule that the teacher has available./, err.message
+        end
+      end
+
+      describe 'The courses must respect the available schedule of the students' do
+        before do
+          @teacher = Teacher.new("Miss Crabapel", [["Monday", 19],["Friday", 9]])
+          @student = Student.new("Milhouse Van Houten", :single, "Beginner", [["Monday",19]])
+        end
+
+        it 'has course schedule match with at least one schedule for each Student of the course' do
+          course = Course.new(@teacher, :single, "Beginner", [@student], 1, 19)
+          expect(course.students_enrolled.first.schedule).must_equal ([[course.day, course.hour]])
+        end
+
+        it 'Can\' create beacuse the course schedule don\'t match with at least one schedule of one Student of the course' do
+          @student_2 = Student.new("Bart J. Simpson", :single, "Beginner", [["Monday", 18]])
+          err = assert_raises RuntimeError do
+            course = Course.new(@teacher, :single, "Beginner", [@student_2], 1, 19)
+          end
+          assert_match /Error: All the enrolled students have to has the schedule of the course./, err.message
+        end
+      end
     end
   end
 
@@ -166,7 +201,7 @@ describe 'Course' do
       enrolled_students = []
       enrolled_students << Student.new("Milhouse Van Houten", :group, "Pre-Intermediate", [["Monday", 19]])
       enrolled_students << Student.new("Bart J. Simpson", :group, "Pre-Intermediate", [["Monday", 19]])
-      course = Course.new(@teacher, :group, "Pre-Intermediate", enrolled_students, 1, 9)
+      course = Course.new(@teacher, :group, "Pre-Intermediate", enrolled_students, 1, 19)
       expect(course.mode).must_equal :group
     end
 

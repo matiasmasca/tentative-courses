@@ -6,8 +6,11 @@ class Teacher
   attr_reader :full_name
   attr_accessor :schedule
 
-  def initialize(name_arg, schedule_arg = [])
-    @full_name = name_arg
-    @schedule = parse_schedule(schedule_arg)
+  def initialize(full_name, schedule = [])
+    # full_name - complete name of the teacher
+    # schedule - an array of integers that represent the availability of the teacher. [day, hour]
+    #
+    @full_name = full_name
+    @schedule = parse_schedule(schedule)
   end
 end

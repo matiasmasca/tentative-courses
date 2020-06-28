@@ -47,22 +47,26 @@ describe 'Student' do
   end
 
   it 'can\'t add his availability for the weekend' do
-    assert_raises RuntimeError do
-      @student.add_day("Saturday", 9)
-    end
+      err = assert_raises RuntimeError do
+        @student.add_day("Saturday", 19)
+      end
+      assert_match /Error: day must be between Monday and Friday/, err.message
 
-    assert_raises RuntimeError do
-      @student.add_day("Sunday", 9)
-    end
+      err = assert_raises RuntimeError do
+        @student.add_day("Sunday", 19)
+      end
+      assert_match /Error: day must be between Monday and Friday/, err.message
   end
 
   it 'can\'t add his availability for before 9 AM or after 7 PM' do
-    assert_raises RuntimeError do
-      @student.add_day("Monday", 8)
+    err = assert_raises RuntimeError do
+       @student.add_day("Monday", 8)
     end
+    assert_match /Error: hour must be number between 9 and 19/, err.message
 
-    assert_raises RuntimeError do
-      @student.add_day("Monday", 20)
+    err = assert_raises RuntimeError do
+       @student.add_day("Monday", 20)
     end
+    assert_match /Error: hour must be number between 9 and 19/, err.message
   end
 end

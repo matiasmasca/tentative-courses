@@ -107,7 +107,6 @@ describe 'CourseManager' do
       end
     end
   end
-  # Falta test para probar el metodo: draw_match
 
   # MVP
   # DONE * Los cursos tienen que respetar el horario que el docente tiene disponible.
@@ -118,5 +117,6 @@ describe 'CourseManager' do
   # DONE * Todos los inscriptos tienen que la misma modalidad. Ej. Si un estudiante eligió modalidad individual
   #        no se los puede inscribir en curso grupal.
 
+  # Falta test para probar el metodo: draw_match
 
 end

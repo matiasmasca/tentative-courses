@@ -5,116 +5,116 @@ require '../src/teacher'
 require '../src/course'
 
 describe 'TentativeCourses' do
-  # describe 'Single Course' do
-  #   describe 'has to have' do
-  #     before do
-  #       @teacher = Teacher.new("Drippy Dan", [["Friday", 19]])
-  #       @teachers = [ @teacher ]
-  #       @student = Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]])
-  #       @enrolled_students = [ @student ]
-  #       @tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
-  #     end
-  #     it 'has a teacher' do
-  #       course = @tentative_courses[:tentative_courses][@teacher].first
-  #       expect(course.teacher).must_equal @teacher
-  #     end
+  describe 'Single Course' do
+    describe 'has to have' do
+      before do
+        @teacher = Teacher.new("Drippy Dan", [["Friday", 19]])
+        @teachers = [ @teacher ]
+        @student = Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]])
+        @enrolled_students = [ @student ]
+        @tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
+      end
+      it 'has a teacher' do
+        course = @tentative_courses[:tentative_courses][@teacher].first
+        expect(course.teacher).must_equal @teacher
+      end
 
-  #     it 'has a level' do
-  #       course = @tentative_courses[:tentative_courses][@teacher].first
-  #       expect(course.level).must_equal "Beginner"
-  #     end
+      it 'has a level' do
+        course = @tentative_courses[:tentative_courses][@teacher].first
+        expect(course.level).must_equal "Beginner"
+      end
 
-  #     it 'has a schedule class, with day and hour' do
-  #       course = @tentative_courses[:tentative_courses][@teacher].first
-  #       expect(course.schedule_class).must_equal ({day: 5, hour:19 })
-  #     end
+      it 'has a schedule class, with day and hour' do
+        course = @tentative_courses[:tentative_courses][@teacher].first
+        expect(course.schedule_class).must_equal ({day: 5, hour:19 })
+      end
 
-  #     it 'has a list of enrolled' do
-  #       course = @tentative_courses[:tentative_courses][@teacher].first
-  #       expect(course.students_enrolled).must_equal @enrolled_students
-  #     end
-  #   end
+      it 'has a list of enrolled' do
+        course = @tentative_courses[:tentative_courses][@teacher].first
+        expect(course.students_enrolled).must_equal @enrolled_students
+      end
+    end
 
-  #   describe 'Match Schedules between 1 teacher and 1 student' do
-  #     it 'has a Teacher with schedule that exact match with one Student so it must purpose 1 Course' do
-  #       @teachers = [ Teacher.new("Drippy Dan", [["Friday", 19]]) ]
-  #       @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]]) ]
+    describe 'Match Schedules between 1 teacher and 1 student' do
+      it 'has a Teacher with schedule that exact match with one Student so it must purpose 1 Course' do
+        @teachers = [ Teacher.new("Drippy Dan", [["Friday", 19]]) ]
+        @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]]) ]
 
-  #       tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
-  #       teacher = @teachers.first
+        tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
+        teacher = @teachers.first
 
-  #       expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
-  #     end
+        expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
+      end
 
-  #     it 'has a Teacher with schedule of 2 days that match in 1 day with 1 Student so it must purpose 1 Course' do
-  #       @teachers = [ Teacher.new("Drippy Dan", [["Monday", 19], ["Friday", 19]]) ]
-  #       @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]]) ]
+      it 'has a Teacher with schedule of 2 days that match in 1 day with 1 Student so it must purpose 1 Course' do
+        @teachers = [ Teacher.new("Drippy Dan", [["Monday", 19], ["Friday", 19]]) ]
+        @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]]) ]
 
-  #       tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
-  #       teacher = @teachers.first
+        tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
+        teacher = @teachers.first
 
-  #       expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
-  #       expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 5
-  #       expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 19
-  #     end
+        expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
+        expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 5
+        expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 19
+      end
 
-  #     it 'has a Teacher with schedule that match in 2 days with 1 Student so it must purpose 2 possible courses' do
-  #       @teachers = [ Teacher.new("Drippy Dan", [["Monday", 17], ["Friday", 19]]) ]
-  #       @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Monday", 17],["Friday", 19]]) ]
+      it 'has a Teacher with schedule that match in 2 days with 1 Student so it must purpose 2 possible courses' do
+        @teachers = [ Teacher.new("Drippy Dan", [["Monday", 17], ["Friday", 19]]) ]
+        @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Monday", 17],["Friday", 19]]) ]
 
-  #       tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
-  #       teacher = @teachers.first
+        tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
+        teacher = @teachers.first
 
-  #       expect(tentative_courses[:tentative_courses][teacher].count).must_equal 2
+        expect(tentative_courses[:tentative_courses][teacher].count).must_equal 2
 
-  #       expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
-  #       expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 1
-  #       expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 17
+        expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
+        expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 1
+        expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 17
 
-  #       expect(tentative_courses[:tentative_courses][teacher].last.class).must_equal Course
-  #       expect(tentative_courses[:tentative_courses][teacher].last.day).must_equal 5
-  #       expect(tentative_courses[:tentative_courses][teacher].last.hour).must_equal 19
-  #     end
+        expect(tentative_courses[:tentative_courses][teacher].last.class).must_equal Course
+        expect(tentative_courses[:tentative_courses][teacher].last.day).must_equal 5
+        expect(tentative_courses[:tentative_courses][teacher].last.hour).must_equal 19
+      end
 
-  #     it 'has a Teacher with schedule of 3 days that match in 2 days with 1 Student so it must purpose 2 possible courses' do
-  #       @teachers = [ Teacher.new("Drippy Dan", [["Monday", 17],["Tuesday", 17], ["Friday", 19]]) ]
-  #       @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Monday", 17],["Friday", 19]]) ]
+      it 'has a Teacher with schedule of 3 days that match in 2 days with 1 Student so it must purpose 2 possible courses' do
+        @teachers = [ Teacher.new("Drippy Dan", [["Monday", 17],["Tuesday", 17], ["Friday", 19]]) ]
+        @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Monday", 17],["Friday", 19]]) ]
 
-  #       tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
-  #       teacher = @teachers.first
+        tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
+        teacher = @teachers.first
 
-  #       expect(tentative_courses[:tentative_courses][teacher].count).must_equal 2
+        expect(tentative_courses[:tentative_courses][teacher].count).must_equal 2
 
-  #       expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
-  #       expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 1
-  #       expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 17
+        expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
+        expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 1
+        expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 17
 
-  #       expect(tentative_courses[:tentative_courses][teacher].last.class).must_equal Course
-  #       expect(tentative_courses[:tentative_courses][teacher].last.day).must_equal 5
-  #       expect(tentative_courses[:tentative_courses][teacher].last.hour).must_equal 19
-  #     end
+        expect(tentative_courses[:tentative_courses][teacher].last.class).must_equal Course
+        expect(tentative_courses[:tentative_courses][teacher].last.day).must_equal 5
+        expect(tentative_courses[:tentative_courses][teacher].last.hour).must_equal 19
+      end
 
-  #     it 'has a Teacher doesn\'t match with the Student so it not purpose any course and add the student to the \"student_out\" list' do
-  #       @teachers = [ Teacher.new("Drippy Dan", [["Monday", 17],["Tuesday", 17], ["Friday", 19]]) ]
-  #       @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Monday", 9],["Friday", 9]]) ]
+      it 'has a Teacher doesn\'t match with the Student so it not purpose any course and add the student to the \"student_out\" list' do
+        @teachers = [ Teacher.new("Drippy Dan", [["Monday", 17],["Tuesday", 17], ["Friday", 19]]) ]
+        @enrolled_students = [ Student.new("Adrian Droide", :single, "Beginner", [["Monday", 9],["Friday", 9]]) ]
 
-  #       tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
-  #       expect(tentative_courses[:students_out].first).must_equal "Adrian Droide"
-  #     end
-  #   end
+        tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
+        expect(tentative_courses[:students_out].first).must_equal "Adrian Droide"
+      end
+    end
 
-  #   it 'has only 1 student enrolled if it has single mode' do
-  #     @teachers = [ Teacher.new("Drippy Dan", [["Friday", 19]]) ]
-  #     @enrolled_students = []
-  #     @enrolled_students << Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]])
-  #     @enrolled_students << Student.new("Martin P Gado", :single, "Beginner", [["Friday", 19]])
+    it 'has only 1 student enrolled if it has single mode' do
+      @teachers = [ Teacher.new("Drippy Dan", [["Friday", 19]]) ]
+      @enrolled_students = []
+      @enrolled_students << Student.new("Adrian Droide", :single, "Beginner", [["Friday", 19]])
+      @enrolled_students << Student.new("Martin P Gado", :single, "Beginner", [["Friday", 19]])
 
-  #     tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
-  #     teacher = @teachers.first
+      tentative_courses = CourseManager.create_tentative_course(@teachers, @enrolled_students)
+      teacher = @teachers.first
 
-  #     expect(tentative_courses[:tentative_courses][teacher].first.students_enrolled.count).must_equal 1
-  #    end
-  # end
+      expect(tentative_courses[:tentative_courses][teacher].first.students_enrolled.count).must_equal 1
+     end
+  end
 
   describe 'Group Course' do
     before do
