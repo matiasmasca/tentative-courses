@@ -54,8 +54,8 @@ describe 'TentativeCourses' do
         teacher = @teachers.first
 
         expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
-        expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 5
-        expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 19
+        expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 5 # Course day is Friday
+        expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 19 # Course hour is 19
       end
 
       it 'has a Teacher with schedule that match in 2 days with 1 Student so it must purpose 2 possible courses' do
@@ -67,10 +67,11 @@ describe 'TentativeCourses' do
 
         expect(tentative_courses[:tentative_courses][teacher].count).must_equal 2
 
+        # first course, first student schedule
         expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
         expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 1
         expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 17
-
+        # second course, second student schedule
         expect(tentative_courses[:tentative_courses][teacher].last.class).must_equal Course
         expect(tentative_courses[:tentative_courses][teacher].last.day).must_equal 5
         expect(tentative_courses[:tentative_courses][teacher].last.hour).must_equal 19
@@ -85,12 +86,14 @@ describe 'TentativeCourses' do
 
         expect(tentative_courses[:tentative_courses][teacher].count).must_equal 2
 
+        # first course, first student schedule
         expect(tentative_courses[:tentative_courses][teacher].first.class).must_equal Course
         expect(tentative_courses[:tentative_courses][teacher].first.day).must_equal 1
         expect(tentative_courses[:tentative_courses][teacher].first.hour).must_equal 17
 
+        # second course, second student schedule
         expect(tentative_courses[:tentative_courses][teacher].last.class).must_equal Course
-        expect(tentative_courses[:tentative_courses][teacher].last.day).must_equal 5
+        expect(tentative_courses[:tentative_courses][teacher].last.day).must_equal 5 # Course day is Friday
         expect(tentative_courses[:tentative_courses][teacher].last.hour).must_equal 19
       end
 
